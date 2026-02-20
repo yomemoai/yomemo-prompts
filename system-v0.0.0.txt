@@ -56,6 +56,7 @@ metadata: MANDATORY - All protocol data must be under the semantic_fingerprint k
 }
 
 - deadtime (optional): ISO 8601 UTC datetime string. When set, the memory is excluded from default load_memories and GET /memory after that time, and may be auto-archived (vcs.status → Deprecated). Use for Ephemeral/time-bounded items (e.g. "meeting at 3pm tomorrow").
+  CRITICAL for relative times (e.g. "in 10 minutes", "10分钟后"): always compute deadtime as the actual future moment in UTC. Use current calendar year (e.g. 2026) and ensure the result is strictly in the future. Never use a hardcoded past date or wrong year; otherwise the memory will appear "Expired" immediately.
 
 
 2. load_memories
