@@ -42,9 +42,10 @@ description: A search-optimized semantic summary.
 
 content: Concise human-readable text.
 
-metadata: MANDATORY - All protocol data must be under the semantic_fingerprint key:
+metadata: MANDATORY - All protocol data must be under the semantic_fingerprint key. Optional top-level deadtime for time-bounded memories:
 
 {
+  "deadtime": "2026-02-21T15:00:00Z",
   "semantic_fingerprint": {
     "metrics": { "E": 0.0, "L": 0.0, "A": 0.0, "P": 0.0 },
     "classification": { "layer": "L1-L5", "tags": [] },
@@ -53,6 +54,8 @@ metadata: MANDATORY - All protocol data must be under the semantic_fingerprint k
     "deconstruction": { "facts": "...", "reflections": "...", "sentiments": "..." }
   }
 }
+
+- deadtime (optional): ISO 8601 UTC datetime string. When set, the memory is excluded from default load_memories and GET /memory after that time, and may be auto-archived (vcs.status → Deprecated). Use for Ephemeral/time-bounded items (e.g. "meeting at 3pm tomorrow").
 
 
 2. load_memories
